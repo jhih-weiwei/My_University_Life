@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GIX in Seattle</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- 字型：由 build_fonts.py 產生 -->
+  <link href="fonts/fonts.css" rel="stylesheet">
+  <!-- 你自己的樣式，放最後 -->
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ============ 頁首 ============ -->
+<header class="page-hero">
+  <div class="container py-5">
+    <p class="hero-eyebrow">Seattle · 2026</p>
+    <h1 class="hero-title">GIX in Seattle</h1>
+    <blockquote class="hero-quote">
+      你要先跨出那一步，將自己的東西推給別人看。
+    </blockquote>
+  </div>
+</header>
+
+<div class="container my-5">
+  <div class="row g-5">
+
+    <!-- ============ 左側導覽列 ============ -->
+    <aside class="col-lg-3">
+      <nav id="tocNav" class="toc nav flex-column">
+        <span class="toc-plane" id="tocPlane" aria-hidden="true">
+          <i class="bi bi-airplane-fill"></i>
+        </span>
+
+        <a class="nav-link" href="#course">課程心得</a>
+        <a class="nav-link" href="#travel">旅遊心得</a>
+        <a class="nav-link" href="#surprise">意外之喜</a>
+        <a class="nav-link" href="#conclusion">結論</a>
+        <a class="nav-link" href="#practical">行前與實務</a>
+      </nav>
+    </aside>
+
+    <!-- ============ 右側內容：h2 是摺疊大區塊，h3 是裡面的卡片 ============ -->
+    <main class="col-lg-9">
+      <div class="accordion section-accordion" id="mainAccordion">
+
+        <!-- ---------- 課程心得 ---------- -->
+        <section class="accordion-item topic-section" id="course">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#panel-course"
+                    aria-expanded="true" aria-controls="panel-course">
+              課程心得
+            </button>
+          </h2>
+          <div id="panel-course" class="accordion-collapse collapse show" data-bs-parent="#mainAccordion">
+            <div class="accordion-body">
+              <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="個案分析"
+                           data-img="images/case-study.jpg"
+                           data-body="#body-case-study">
+                    <img src="images/case-study.jpg" class="card-img-top" alt="個案分析課堂">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">個案分析</h3>
+                      <p class="card-text">先了解、再接近，所以Why？</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="思考設計"
+                           data-img="images/design-thinking.jpg"
+                           data-body="#body-design-thinking">
+                    <img src="images/design-thinking.jpg" class="card-img-top" alt="設計思考工作坊">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">思考設計</h3>
+                      <p class="card-text">你的夢想是什麼？該如何達成？</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="硬體實作"
+                           data-img="images/hardware.jpg"
+                           data-body="#body-hardware">
+                    <img src="images/hardware.jpg" class="card-img-top" alt="硬體實作">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">硬體實作</h3>
+                      <p class="card-text">震動回饋搖桿的製作過程。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="分組合作"
+                           data-img="images/teamwork.jpg"
+                           data-body="#body-teamwork">
+                    <img src="images/teamwork.jpg" class="card-img-top" alt="分組討論">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">分組合作</h3>
+                      <p class="card-text">單打獨鬥的狼固然可畏，不過......狼是群居動物。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="演講"
+                           data-img="images/speech.jpg"
+                           data-body="#body-speech">
+                    <img src="images/speech.jpg" class="card-img-top" alt="演講照片">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">演講介紹</h3>
+                      <p class="card-text">臺灣人要相信自己很厲害。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="參訪"
+                           data-img="images/visit.jpg"
+                           data-body="#body-visit">
+                    <img src="images/visit.jpg" class="card-img-top" alt="參訪照片">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">參訪多處</h3>
+                      <p class="card-text">參訪出遊。</p>
+                    </div>
+                  </article>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- 旅遊心得 ---------- -->
+        <section class="accordion-item topic-section" id="travel">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#panel-travel"
+                    aria-expanded="false" aria-controls="panel-travel">
+              旅遊心得
+            </button>
+          </h2>
+          <div id="panel-travel" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+            <div class="accordion-body">
+              <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="派克市場"
+                           data-img="images/pike-place.jpg"
+                           data-body="#body-pike-place">
+                    <img src="images/pike-place.jpg" class="card-img-top" alt="派克市場入口招牌">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">派克市場</h3>
+                      <p class="card-text">「生命是一襲華美的袍，爬滿了蝨子。」此處，亦是。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="City Pass 景點"
+                           data-img="images/citypass.jpg"
+                           data-body="#body-citypass">
+                    <img src="images/citypass.jpg" class="card-img-top" alt="太空針塔">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">City Pass 景點</h3>
+                      <p class="card-text">最像觀光客的時候，或者說，就是。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="超市超市&amp;……超市"
+                           data-img="images/grocery.jpg"
+                           data-body="#body-grocery">
+                    <img src="images/grocery.jpg" class="card-img-top" alt="超市貨架">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">超市超市&amp;……超市</h3>
+                      <p class="card-text">餐餐外食餐廳？不，天天流連超市。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="煮飯樂趣"
+                           data-img="images/cooking.jpg"
+                           data-body="#body-cooking">
+                    <img src="images/cooking.jpg" class="card-img-top" alt="自炊的一餐">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">煮飯樂趣</h3>
+                      <p class="card-text">返國前一夜，洗手作羹湯。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="Bellevue 探索！"
+                           data-img="images/bellevue.jpg"
+                           data-body="#body-bellevue">
+                    <img src="images/bellevue.jpg" class="card-img-top" alt="Bellevue 街景">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">Bellevue 探索！</h3>
+                      <p class="card-text">一日探索，寧靜之處。</p>
+                    </div>
+                  </article>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- 意外之喜 ---------- -->
+        <section class="accordion-item topic-section" id="surprise">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#panel-surprise"
+                    aria-expanded="false" aria-controls="panel-surprise">
+              意外之喜
+            </button>
+          </h2>
+          <div id="panel-surprise" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+            <div class="accordion-body">
+              <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="認識新朋友"
+                           data-img="images/friends.jpg"
+                           data-body="#body-friends">
+                    <img src="images/friends.jpg" class="card-img-top" alt="同團夥伴合照">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">認識新朋友</h3>
+                      <p class="card-text">緣分讓我們相遇、相識，進而才能相知。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="新題目靈感"
+                           data-img="images/idea.jpg"
+                           data-body="#body-idea">
+                    <img src="images/idea.jpg" class="card-img-top" alt="筆記本上的草圖">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">新題目靈感</h3>
+                      <p class="card-text">誰說，人一定要被科系、類組所限？</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="未來展望"
+                           data-img="images/future.jpg"
+                           data-body="#body-future">
+                    <img src="images/future.jpg" class="card-img-top" alt="西雅圖天際線">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">未來展望</h3>
+                      <p class="card-text">給自己一年、三年、五年，十年。</p>
+                    </div>
+                  </article>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- 結論：沒有卡片，直接放文字 ---------- -->
+        <section class="accordion-item topic-section" id="conclusion">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#panel-conclusion"
+                    aria-expanded="false" aria-controls="panel-conclusion">
+              結論
+            </button>
+          </h2>
+          <div id="panel-conclusion" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+            <div class="accordion-body">
+              <p>整趟GIX的旅程中，如果問我是否推薦參與，則我會說以旅遊方面要看你的安排，以學習方面可以增廣見聞、增進信心，而要以荷包方面......我建議三思。</p>
+              <p>對我本人而言，整趟旅程學習到許多，並且也有新穎的體驗，可如果要以荷包來論，我會覺得可以再存多點錢，明年我想去其他地方看看。</p>
+              <p>天下無不散的筵席，在飛機回台時，落地那一霎那，我仍是不可免俗地在眼眶含淚，第一次離開家裡去飛中文系的國家十幾天，我想，我還是挺想家的。</p>
+              <p>臺灣，我回來了。</p>
+              <blockquote class="pull-quote">
+                一趟旅途結束，一個課程落幕，而我的人生將繼續前行。
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- 行前與實務 ---------- -->
+        <section class="accordion-item topic-section" id="practical">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#panel-practical"
+                    aria-expanded="false" aria-controls="panel-practical">
+              行前與實務
+            </button>
+          </h2>
+          <div id="panel-practical" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+            <div class="accordion-body">
+              <blockquote class="panel-quote">
+                  一些旅程的實用分享與紀錄。
+                </blockquote>
+              <div class="row row-cols-1 row-cols-md-2 g-4">
+                
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="飛機"
+                           data-img="images/flight.jpg"
+                           data-body="#body-flight">
+                    <img src="images/flight.jpg" class="card-img-top" alt="機艙窗外">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">飛機</h3>
+                      <p class="card-text">十多小時的空中旅程，你怎麼享受。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="海關經驗"
+                           data-img="images/customs.jpg"
+                           data-body="#body-customs">
+                    <img src="images/customs.jpg" class="card-img-top" alt="入境海關排隊動線">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">海關經驗</h3>
+                      <p class="card-text">有人說過海關像是運氣，我深以為然。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="時差"
+                           data-img="images/jetlag.jpg"
+                           data-body="#body-jetlag">
+                    <img src="images/jetlag.jpg" class="card-img-top" alt="兩地時鐘">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">時差</h3>
+                      <p class="card-text">十五小時，抵達時比出發還早。</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col">
+                  <article class="card topic-card h-100" role="button" tabindex="0"
+                           data-bs-toggle="modal" data-bs-target="#topicModal"
+                           data-title="機場"
+                           data-img="images/airport.jpg"
+                           data-body="#body-airport">
+                    <img src="images/airport.jpg" class="card-img-top" alt="西雅圖機場航廈">
+                    <div class="card-body">
+                      <h3 class="h5 card-title">機場</h3>
+                      <p class="card-text">竟然有賣——！</p>
+                    </div>
+                  </article>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ 共用視窗 ============ -->
+<div class="modal fade" id="topicModal" tabindex="-1" aria-labelledby="topicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title h4" id="topicModalLabel"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-md-5">
+            <img class="modal-img rounded" src="" alt="">
+          </div>
+          <div class="col-md-7 modal-text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 視窗內容（畫面不顯示） ============ -->
+<div class="d-none">
+  <div id="body-case-study"><p>個案分析的內容寫在這裡。</p></div>
+  <div id="body-design-thinking"><p>思考設計的內容寫在這裡。</p></div>
+
+  <div id="body-hardware">
+    <h4 class="h6 text-body-secondary">震動回饋搖桿</h4>
+    <blockquote class="pull-quote">聽不到腳步聲，也該感覺得到。</blockquote>
+    <p>硬體實作的內容寫在這裡。</p>
+  </div>
+
+  <div id="body-teamwork"><p>分組合作的內容寫在這裡。</p></div>
+
+  <div id="body-speech">
+    <p>演講內容在這裡。</p>
+  </div>
+
+  <div id="body-visit">
+    <p>參訪內容在這裡。</p>
+  </div>
+  <div id="body-pike-place"><p>派克市場的內容寫在這裡。</p></div>
+  <div id="body-citypass"><p>City Pass 景點的內容寫在這裡。</p></div>
+  <div id="body-grocery"><p>超市的內容寫在這裡。</p></div>
+  <div id="body-cooking"><p>煮飯樂趣的內容寫在這裡。</p></div>
+  <div id="body-bellevue"><p>Bellevue 的內容寫在這裡。</p></div>
+  <div id="body-friends">
+    <p>在聽完Fireside chat時</p>
+  </div>
+  <div id="body-idea">
+    <blockquote class="pull-quote">如果我會的是程式，為什麼我不拿程式來分析看看族語？</blockquote>
+    <p>在與徐教授等三位教授的fireside chat時，其中一位教授分享她的學生是中文系，她帶著學生使用程式來分析古文中不同古人的關係，而後去投DADH發表，最後進了科技業。</p>
+    <p>那時的我想到一個問題，族語中總有ka與ku會加在不同地方，是不是我也可以來分析這些格位語的量化分布，他們是在誰的前後？</p>
+    <p>如果一個題目可以同時讓我做喜歡的，又可以發展練習到我其他喜歡的領域，那有何不可？我本就是個跨領域而生之人，可以說我是跨領域，也可以說我是在做我的本行。</p>
+  </div>
+  <div id="body-future">
+    <p>未來展望的內容寫在這裡。</p>
+  </div>
+  <div id="body-flight">
+    <p>去程回程我們都是搭乘星宇航空的飛機為主（少部分同學是自己搭乘別架差不多時間的飛機），所以以下主要來介紹星宇航空飛機的經驗！</p>
+    <p>在去程時想說人家說一上飛機就睡，可以比較好克服時差問題，所以我睡了一段時間直到飛機餐來，不過因為我椅背真的不會調，所以一度躺不下去（是旁邊的小妹妹好心幫我調我才成功躺下的，極度感謝她）。</p>
+    <p>去程的飛機餐主要有兩種，第一種比較偏向午晚餐的類型，因為不吃牛，所以我選了不是牛的那一道，外面的包裝是Snoopy，而冰淇淋是哈根達斯，可以吃到裡面的芝麻麻糬，很Q很好吃。而除了餐包之外，我也事前做了功課，發現竟然是可以在星宇的飛機上喝濃湯的（隱藏服務），所以身為濃湯控，我當然選擇要喝湯！（旁邊的小妹妹看我說要濃湯也跟空服員表示她要濃湯，於是我們就快樂得喝濃湯了！）</p>
+    <p>回程可能是因為偏晚還沒吃晚餐，所以就算吃完飛機餐後睡了三、四個小時，我還是有一點餓，因此開始請空服員給我食物了（拿了兩次三明治、兩次零食，我蠻喜歡巧克力米果的）。回程一樣有體驗到濃湯的部分，正餐式雞腿排飯，對於許久沒吃到臺灣白飯的我而言是一大救贖。</p>
+    <p>唯一可惜是去程坐豪經時沒有要泡麵，回程的是經濟艙不能要泡麵。（下一次坐飛長程豪經的話要來要要看泡麵！）</p>
+  </div>
+
+  <div id="body-customs">
+    <p>過海關的流程是：先去行李轉盤拿行李，再拉著自己的行李去排隊。</p>
+    <p>有人說過海關像是運氣，我深以為然。不過有些方式可以讓自己減少需要多解釋的部分：</p>
+    <ol>
+      <li>把自己的資訊印成紙本，包括住哪裡、為什麼來等等。</li>
+      <li>在對方問來做什麼時直接把紙本遞給他，讓他明確地看到。</li>
+    </ol>
+
+    <h4 class="h6 mt-4">親身經驗</h4>
+    <ul>
+      <li>我被問時直接把邀請函遞給海關，沒有額外用英文回答。海關剛好也很佛系，看完就放我走了。</li>
+      <li>朋友被問到住址時回答不太出來，我直接開手機上的地址遞給她轉交海關（原本海關以為她是語言不通、不知道 location 是什麼）。</li>
+      <li>另一位朋友很有自信地回答是來參加課程的，結果被問了更多問題，例如父母在做什麼之類的。</li>
+    </ul>
+    <p>因此，我們大家討論後的結論是，基本上與海關當下心情有一定的關連，以及如果可以，還是建議要把資料都先準備好，以免被覺得很可疑。</p>
+  </div>
+
+  <div id="body-jetlag">
+    <p>十五小時的時差，使得我們在抵達時反而比我們上飛機的時間還早，在飛機上吃了兩餐而下飛機又吃一道晚餐。</p>
+    <p>正所謂時差，便是在你原本臺灣睡覺時間想睡，夜裡睡不著的狀況。所幸在時差部分，對我而言影響不大，唯有回臺灣時因為太累了一到家就睡了八個小時，然後醒來後直接來去上班。</p>
+    <p>旁人調時差的一周，我靠著早八上班一周來硬生生調回自己的時差。</p>
+  </div>
+
+  <div id="body-airport">
+    <p>西雅圖機場，真的沒什麼好逛的。</p>
+    <p>尤其我們是坐凌晨的飛機，在十點半過後許多店家都已打烊，原先想像中要在機場買的免稅品們也都沒有買到。</p>
+    <p>不過西雅圖機場特別的是有些航廈要坐輕軌去到該航廈，以及！西雅圖機場是有賣<strong class="highlight">刮刮樂</strong>的！</p>
+    <p>「什麼？！竟然有賣刮刮樂！」同團的朋友看到有賣刮刮樂並且看起來很好看，一個快樂就買了兩三張，沒刮開的還可以當明信片送朋友，是個不錯的想法。（畢竟確實好看）</p>
+    <p>臺灣的機場有比較好逛嗎？老實說，撇除店家逛逛外，我蠻喜歡去機場不同登機區的主題逛逛，也是因為這樣才發現了：</p>
+    <div class="figure-pair">
+      <figure>
+        <img src="images/airport-pepptry.jpg" alt="布袋戲展示區" loading="lazy">
+        <figcaption>布袋戲區。</figcaption>
+      </figure>
+      <figure>
+        <img src="images/airport-marrine.jpg" alt="海洋生物區" loading="lazy">
+        <figcaption>海洋生物區（給小孩玩的）。</figcaption>
+      </figure>
+    </div>
+    <p>以及！最重要但卻只有小小一面牆的新發現！</p>
+      <figure class="inline-figure">
+        <img src="images/airport-TWopera.jpg" alt="機場的歌仔戲區" loading="lazy">
+        <figcaption>歌仔戲區！！！</figcaption>
+      </figure>
+  </div>
+</div>
+
+<!-- ============================================================
+     頁尾：授權與資源出處
+     ============================================================ -->
+<footer class="page-footer">
+  <div class="container">
+    <div class="row g-4 g-lg-5">
+
+      <!-- 你自己的內容授權 -->
+      <div class="col-lg-6">
+        <h2 class="footer-heading">關於這個頁面</h2>
+        <p class="footer-text">
+          本站的文字與照片為
+          <span class="footer-author">林芷葳 Idas Tali</span>
+          所有。
+        </p>
+        <p class="footer-text">
+          除另有註明者外，內容採
+          <a rel="license"
+             href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hant"
+             target="_blank" rel="license noopener">
+            姓名標示—非商業性—禁止改作 4.0 國際
+            <span class="text-nowrap">（CC BY-NC-ND 4.0）</span>
+          </a>
+          授權。歡迎在標明出處的前提下非商業轉載。
+        </p>
+        <p class="footer-note">
+          照片中若有他人入鏡，其肖像權不在本授權範圍內，轉載前請自行確認。
+          引用第三方資源（見右）各依其原授權，不適用本頁授權。
+        </p>
+      </div>
+
+      <!-- 用到的東西 -->
+      <div class="col-lg-6">
+        <h2 class="footer-heading">使用資源</h2>
+        <ul class="footer-list">
+          <li>
+            <a href="https://github.com/ButTaiwan/iansui" target="_blank" rel="noopener">芫荽 Iansui</a>
+            — ButTaiwan，改造自 Fontworks 的 Klee One，SIL OFL 1.1
+          </li>
+          <li>
+            <a href="https://github.com/Chenyu-otf/chenyuluoyan_thin" target="_blank" rel="noopener">辰宇落雁體</a>
+            — 王立宇、劉韋辰，SIL OFL 1.1
+          </li>
+          <li>
+            <a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5</a>
+            ／
+            <a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener">Bootstrap Icons</a>
+            — MIT License
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="footer-rule">
+
+    <div class="footer-bottom">
+      <p class="mb-0">© 2026 林芷葳 Idas Tali</p>
+      <p class="mb-0">
+        <a href="#" class="footer-top-link">
+          回到頂端 <i class="bi bi-arrow-up-short"></i>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ---------- 卡片 → 視窗 ---------- */
+const topicModal = document.getElementById('topicModal');
+
+topicModal.addEventListener('show.bs.modal', event => {
+  const card = event.relatedTarget;
+  topicModal.querySelector('.modal-title').textContent = card.dataset.title;
+
+  const img = topicModal.querySelector('.modal-img');
+  img.src = card.dataset.img;
+  img.alt = card.dataset.title;
+
+  const source = document.querySelector(card.dataset.body);
+  topicModal.querySelector('.modal-text').innerHTML = source ? source.innerHTML : '';
+});
+
+document.querySelectorAll('.topic-card').forEach(card => {
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      card.click();
+    }
+  });
+});
+
+
+/* ---------- 導覽列的小飛機：停在目前展開的那一區 ---------- */
+const tocNav   = document.getElementById('tocNav');
+const tocPlane = document.getElementById('tocPlane');
+const softMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let planeY = null;
+
+function flyTo(link) {
+  if (!link) return;
+  const y = link.offsetTop + link.offsetHeight / 2;
+  const goingDown = planeY === null || y >= planeY;
+  planeY = y;
+  tocPlane.style.top = y + 'px';
+  tocPlane.style.setProperty('--plane-rotate', goingDown ? '180deg' : '0deg');
+}
+
+function currentLink() {
+  const open = document.querySelector('.section-accordion .accordion-collapse.show');
+  const id = open ? open.id.replace('panel-', '') : null;
+  return (id && tocNav.querySelector('[href="#' + id + '"]')) || tocNav.querySelector('.nav-link');
+}
+
+function syncPlane() {
+  const link = currentLink();
+  tocNav.querySelectorAll('.nav-link').forEach(a => a.classList.toggle('active', a === link));
+  flyTo(link);
+}
+
+// 點導覽列 → 展開那一區並捲過去
+tocNav.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const id = link.getAttribute('href').slice(1);
+    const panel = document.getElementById('panel-' + id);
+    bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false }).show();
+    document.getElementById(id).scrollIntoView({
+      behavior: softMotion ? 'smooth' : 'auto',
+      block: 'start'
+    });
+  });
+
+  // 滑過去先預覽，移開再飛回目前展開的區塊
+  link.addEventListener('mouseenter', () => flyTo(link));
+  link.addEventListener('focus', () => flyTo(link));
+});
+tocNav.addEventListener('mouseleave', syncPlane);
+
+// 展開／收合任一區塊時，飛機跟著走
+document.getElementById('mainAccordion')
+  .addEventListener('shown.bs.collapse', syncPlane);
+document.getElementById('mainAccordion')
+  .addEventListener('hidden.bs.collapse', syncPlane);
+
+window.addEventListener('resize', syncPlane);
+syncPlane();
+</script>
+
+</body>
+</html>

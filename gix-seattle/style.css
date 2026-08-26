@@ -1,0 +1,367 @@
+/* ============================================================
+   GIX in Seattle — 自訂樣式
+   載入順序：Bootstrap → fonts/fonts.css → 這個檔案
+   ============================================================ */
+
+/* ============================================================
+   1. 字型
+   字型檔本身在 fonts/fonts.css（由 build_fonts.py 產生）
+   這裡只決定「哪裡用哪一套」
+   ============================================================ */
+:root {
+  --font-body:  "Iansui", "Noto Sans TC", system-ui, sans-serif;       /* 芫荽：內文 */
+  --font-quote: "ChenYuluoyan", "Iansui", cursive;                     /* 辰宇落雁體：引言 */
+
+  --bs-body-font-family: var(--font-body);
+}
+
+/* 引言專用。想在別的地方用手寫體，加 class="quote-font" 就好 */
+blockquote,
+.pull-quote,
+.hero-quote,
+.panel-quote,
+.quote-font,
+.card-text {
+  font-family: var(--font-quote);
+}
+
+/* 芫荽只有一個字重，粗體是瀏覽器硬撐出來的，中文會糊。
+   標題改用大小與顏色做層次，字重最多到 500。 */
+body {
+  font-weight: 400;
+}
+
+.hero-title,
+.section-title,
+.accordion-button,
+.card-title,
+.modal-title,
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   2. 色彩與圓角
+   ============================================================ */
+:root {
+  --ink:       #1f2933;
+  --sea:       #2c5f6f;
+  --sea-light: #e8f0f2;
+  --highlight: #c0392b;
+  --paper:     #fbfaf7;
+  --line:      #dfe3e6;
+
+  --radius-card: 1.25rem;   /* ← 卡片／面板／視窗的圓角，調這裡 */
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.9;          /* 楷體類的字，行距放寬比較好讀 */
+}
+
+
+/* ---------- 重點標註 ---------- */
+.highlight {
+  color: var(--highlight);
+  font-weight: 500;
+}
+
+.marker {
+  background: linear-gradient(transparent 60%, #ffe9a8 60%);
+}
+
+
+/* ============================================================
+   3. 頁首
+   ============================================================ */
+.page-hero {
+  background-color: var(--sea);
+  color: #fff;
+}
+
+.hero-eyebrow {
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: .8rem;
+  opacity: .75;
+  margin-bottom: .5rem;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  margin-bottom: 1.5rem;
+}
+
+.hero-quote {
+  border-left: 3px solid rgba(255, 255, 255, .5);
+  padding-left: 1rem;
+  margin: 0;
+  font-size: 1.35rem;        /* 手寫體偏細，放大一點才撐得住 */
+  opacity: .95;
+}
+
+/* 內文裡的拉引言 */
+.pull-quote {
+  font-size: 1.3rem;
+  color: var(--sea);
+  border-left: 3px solid var(--sea-light);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+}
+
+.panel-quote {
+  font-size: 2rem;
+  color: var(--sea);
+}
+
+
+/* ============================================================
+   4. 導覽列與小飛機
+   ============================================================ */
+.toc {
+  position: sticky;
+  top: 2rem;
+  padding-left: 1.75rem;
+}
+
+/* 虛線＝航線 */
+.toc::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .5rem;
+  bottom: .5rem;
+  border-left: 2px dashed var(--line);
+}
+
+.toc .nav-link {
+  color: var(--ink);
+  padding: .65rem 0;
+  transition: color .2s ease;
+}
+
+.toc .nav-link:hover,
+.toc .nav-link:focus-visible,
+.toc .nav-link.active {
+  color: var(--sea);
+}
+
+.toc .nav-link.active {
+  font-weight: 500;
+}
+
+/* 唯一的那台飛機，top 由 JS 設定 */
+.toc-plane {
+  --plane-rotate: 180deg;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%) rotate(var(--plane-rotate));
+  color: var(--sea);
+  font-size: .95rem;
+  line-height: 1;
+  pointer-events: none;
+  transition: top .55s cubic-bezier(.65, .02, .25, 1),
+              transform .35s ease;
+}
+
+@media (max-width: 991.98px) {
+  .toc { position: static; }
+}
+
+
+/* ============================================================
+   5. h2 大區塊（摺疊）
+   ============================================================ */
+.section-accordion {
+  --bs-accordion-border-color: var(--line);
+  --bs-accordion-active-bg: var(--sea-light);
+  --bs-accordion-active-color: var(--sea);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 .2rem rgba(44, 95, 111, .25);
+  --bs-accordion-bg: transparent;
+}
+
+.section-accordion .accordion-item {
+  margin-bottom: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.section-accordion .accordion-button {
+  font-size: 1.4rem;
+  padding: 1.1rem 1.35rem;
+}
+
+.section-accordion .accordion-body {
+  padding: 1.5rem 1.35rem 1.75rem;
+}
+
+.topic-section {
+  scroll-margin-top: 1.5rem;
+}
+
+
+/* ============================================================
+   6. h3 卡片
+   ============================================================ */
+.topic-card {
+  --bs-card-border-radius: var(--radius-card);
+  --bs-card-inner-border-radius: calc(var(--radius-card) - 1px);
+
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.topic-card:hover,
+.topic-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 .75rem 1.5rem rgba(31, 41, 51, .12);
+}
+
+.topic-card .card-img-top {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.topic-card .card-title {
+  color: var(--sea);
+  margin-bottom: .35rem;
+}
+
+.topic-card .card-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #6b7680;
+  margin-bottom: 0;
+}
+
+
+/* ============================================================
+   7. 視窗
+   ============================================================ */
+.modal-content {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.modal-header {
+  background-color: var(--sea-light);
+  border-bottom: 1px solid var(--line);
+}
+
+.modal-title {
+  color: var(--sea);
+}
+
+.modal-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+@media (max-width: 767.98px) {
+  .modal-img { aspect-ratio: 16 / 9; }
+}
+
+
+/* ============================================================
+   8. 通則
+   ============================================================ */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, .toc-plane { transition: none !important; }
+}
+
+
+/* ============================================================
+   9. 頁尾
+   ============================================================ */
+.page-footer {
+  background-color: var(--sea);
+  color: rgba(255, 255, 255, .85);
+  padding: 3rem 0 2rem;
+  margin-top: 5rem;
+  font-size: .92rem;
+  line-height: 1.8;
+}
+
+.footer-heading {
+  font-size: 1rem;
+  letter-spacing: .06em;
+  color: #fff;
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+}
+
+.footer-text {
+  margin-bottom: .75rem;
+}
+
+.footer-author {
+  color: #fff;
+}
+
+/* 免責、細則之類的小字 */
+.footer-note {
+  font-size: .82rem;
+  opacity: .65;
+  margin-bottom: 0;
+}
+
+.footer-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.footer-list li {
+  padding-left: 1.1rem;
+  position: relative;
+  margin-bottom: .6rem;
+}
+
+.footer-list li::before {
+  content: "·";
+  position: absolute;
+  left: .25rem;
+  opacity: .6;
+}
+
+.page-footer a {
+  color: #fff;
+  text-decoration-color: rgba(255, 255, 255, .4);
+  text-underline-offset: .2em;
+}
+
+.page-footer a:hover {
+  text-decoration-color: #fff;
+}
+
+.footer-rule {
+  border-color: rgba(255, 255, 255, .25);
+  margin: 2rem 0 1.25rem;
+  opacity: 1;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  justify-content: space-between;
+  font-size: .85rem;
+  opacity: .8;
+}
+
+.footer-top-link {
+  text-decoration: none;
+}
