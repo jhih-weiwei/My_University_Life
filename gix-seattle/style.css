@@ -167,8 +167,94 @@ body {
               transform .35s ease;
 }
 
+/* 手機版：面板裡不需要黏著，但要當飛機的定位基準 */
 @media (max-width: 991.98px) {
-  .toc { position: static; }
+  .toc {
+    position: relative;
+    top: auto;
+  }
+}
+
+
+/* ---------- 手機版滑出面板 ---------- */
+.toc-panel {
+  --bs-offcanvas-width: 16rem;
+  --bs-offcanvas-bg: var(--paper);
+}
+
+.toc-panel .offcanvas-header {
+  border-bottom: 1px solid var(--line);
+  color: var(--sea);
+}
+
+@media (max-width: 991.98px) {
+  .toc-panel .offcanvas-body {
+    padding-top: 1.25rem;
+  }
+  .toc .nav-link {
+    padding: .8rem 0;      /* 手指比滑鼠粗，點擊區放大 */
+  }
+}
+
+
+/* ---------- 浮在畫面上的飛機按鈕 ---------- */
+.toc-fab {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1030;
+
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+
+  padding: .7rem 1.1rem;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--sea);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: .9rem;
+  line-height: 1;
+  box-shadow: 0 .5rem 1.25rem rgba(31, 41, 51, .28);
+
+  /* 避開 iPhone 底部的home列 */
+  margin-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.toc-fab:active {
+  transform: scale(.96);
+}
+
+.toc-fab-icon {
+  font-size: 1.05rem;
+  transform: rotate(90deg);   /* 機頭朝右，像要起飛 */
+}
+
+.toc-fab-label {
+  max-width: 8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 面板打開時把按鈕收起來，不要卡在半透明遮罩上 */
+.offcanvas-backdrop.show ~ .toc-fab,
+body.offcanvas-open .toc-fab {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toc-fab {
+  transition: opacity .2s ease, transform .12s ease;
+}
+
+
+/* 手機版底部留白，免得頁尾被按鈕壓住 */
+@media (max-width: 991.98px) {
+  .page-footer {
+    padding-bottom: 5.5rem;
+  }
 }
 
 
@@ -364,4 +450,71 @@ img {
 
 .footer-top-link {
   text-decoration: none;
+}
+
+
+/* ============================================================
+   10. 內文插圖
+   三種寫法：.inline-figure 單張、.figure-pair 兩張並排、
+   .figure-grid 三張以上自動排列
+   ============================================================ */
+
+/* 共用：圖片本體與說明文字 */
+.inline-figure img,
+.figure-pair img,
+.figure-grid img {
+  width: 100%;
+  border-radius: .75rem;
+  display: block;
+}
+
+.inline-figure figcaption,
+.figure-pair figcaption,
+.figure-grid figcaption {
+  font-size: .85rem;
+  line-height: 1.7;
+  color: #6b7680;
+  margin-top: .5rem;
+}
+
+/* ---------- 單張 ---------- */
+.inline-figure {
+  margin: 1.75rem 0;
+}
+
+/* ---------- 兩張並排 ---------- */
+.figure-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+.figure-pair figure {
+  margin: 0;
+}
+
+/* ---------- 三張以上的網格 ---------- */
+.figure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+.figure-grid figure {
+  margin: 0;
+}
+
+/* 網格裡的圖統一裁成正方，排起來才整齊 */
+.figure-grid img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* 手機上並排會太窄，改成一張一張疊 */
+@media (max-width: 575.98px) {
+  .figure-pair {
+    grid-template-columns: 1fr;
+  }
 }

@@ -27,21 +27,37 @@
 </header>
 
 <div class="container my-5">
-  <div class="row g-5">
+  <div class="row gx-5 gy-0">
 
-    <!-- ============ 左側導覽列 ============ -->
-    <aside class="col-lg-3">
-      <nav id="tocNav" class="toc nav flex-column">
-        <span class="toc-plane" id="tocPlane" aria-hidden="true">
-          <i class="bi bi-airplane-fill"></i>
-        </span>
+    <!-- ============ 導覽列：桌機是側欄，手機是滑出面板 ============ -->
+    <aside class="col-lg-3 toc-col">
+      <div class="offcanvas-lg offcanvas-start toc-panel"
+           tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
 
-        <a class="nav-link" href="#course">課程心得</a>
-        <a class="nav-link" href="#travel">旅遊心得</a>
-        <a class="nav-link" href="#surprise">意外之喜</a>
-        <a class="nav-link" href="#conclusion">結論</a>
-        <a class="nav-link" href="#practical">行前與實務</a>
-      </nav>
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h6 mb-0" id="tocOffcanvasLabel">
+            <i class="bi bi-airplane-fill me-2"></i>這趟旅程
+          </h2>
+          <button type="button" class="btn-close"
+                  data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas"
+                  aria-label="關閉"></button>
+        </div>
+
+        <div class="offcanvas-body">
+          <nav id="tocNav" class="toc nav flex-column">
+            <span class="toc-plane" id="tocPlane" aria-hidden="true">
+              <i class="bi bi-airplane-fill"></i>
+            </span>
+
+            <a class="nav-link" href="#course">課程心得</a>
+            <a class="nav-link" href="#travel">旅遊心得</a>
+            <a class="nav-link" href="#surprise">意外之喜</a>
+            <a class="nav-link" href="#conclusion">結論</a>
+            <a class="nav-link" href="#practical">行前與實務</a>
+          </nav>
+        </div>
+
+      </div>
     </aside>
 
     <!-- ============ 右側內容：h2 是摺疊大區塊，h3 是裡面的卡片 ============ -->
@@ -383,7 +399,8 @@
                            data-bs-toggle="modal" data-bs-target="#topicModal"
                            data-title="機場"
                            data-img="images/airport.jpg"
-                           data-body="#body-airport">
+                           data-body="#body-airport"
+                           data-layout="wide">
                     <img src="images/airport.jpg" class="card-img-top" alt="西雅圖機場航廈">
                     <div class="card-body">
                       <h3 class="h5 card-title">機場</h3>
@@ -402,6 +419,14 @@
   </div>
 </div>
 
+<!-- ============ 手機版：浮在畫面上的飛機按鈕 ============ -->
+<button class="toc-fab d-lg-none" type="button"
+        data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas"
+        aria-controls="tocOffcanvas" aria-label="開啟導覽">
+  <i class="bi bi-airplane-fill toc-fab-icon"></i>
+  <span class="toc-fab-label">課程心得</span>
+</button>
+
 <!-- ============ 共用視窗 ============ -->
 <div class="modal fade" id="topicModal" tabindex="-1" aria-labelledby="topicModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -412,7 +437,7 @@
       </div>
       <div class="modal-body">
         <div class="row g-4">
-          <div class="col-md-5">
+          <div class="col-md-5 modal-img-col">
             <img class="modal-img rounded" src="" alt="">
           </div>
           <div class="col-md-7 modal-text"></div>
@@ -442,7 +467,16 @@
   <div id="body-visit">
     <p>參訪內容在這裡。</p>
   </div>
-  <div id="body-pike-place"><p>派克市場的內容寫在這裡。</p></div>
+  
+  <div id="body-pike-place">
+    <p>一個簡單的午後，我們決定來去Pike Market逛逛，而那是我們到西雅圖的第二天。</p>
+    <p>我們搭乘了公車抵達，美國的公車有下車鈴，但除了下車鈴外我們也會拉拉繩，當拉繩後就可以有stop request了，然後就靜候下車！</p>
+    <p>我們是購買了一日票的公車票，美國公車票要購買的話需要有他們網路下購買才行（我們是連學校宿舍網路時購買的）</p>
+    <p>Pike Market知名的有丟魚秀，而我自己最喜歡的是他們的巧達濃湯，我們點了一碗三個人分，可以說是剛剛好，但對不喜歡太濃或者是酸的人，麵包會有點偏太酸。</p>
+    <p>當然除了濃湯之外，也嘗試了蘋果汁，不過蠻貴的，我自己喝主要是因為好渴+很多人推薦說是特色，唯一好處是新鮮的真的喝起來不太一樣。</p>
+    <p>但Pike Market有好處也有壞處，在人潮多的假日算是安全無虞的，不過也有同團朋友在平日前往，卻在那邊的街上遇到了<strong class="highlight">暴露狂</strong>，因此還是極度建議不要在太晚或人少時前往（他們是三個女生同行）。</p>
+  </div>
+
   <div id="body-citypass"><p>City Pass 景點的內容寫在這裡。</p></div>
   <div id="body-grocery"><p>超市的內容寫在這裡。</p></div>
   <div id="body-cooking"><p>煮飯樂趣的內容寫在這裡。</p></div>
@@ -594,12 +628,23 @@ topicModal.addEventListener('show.bs.modal', event => {
   const card = event.relatedTarget;
   topicModal.querySelector('.modal-title').textContent = card.dataset.title;
 
-  const img = topicModal.querySelector('.modal-img');
-  img.src = card.dataset.img;
-  img.alt = card.dataset.title;
+  const imgCol  = topicModal.querySelector('.modal-img-col');
+  const textCol = topicModal.querySelector('.modal-text');
+  const wide    = card.dataset.layout === 'wide';
+
+  // 圖多的篇章用滿版，封面圖就不另外顯示
+  imgCol.classList.toggle('d-none', wide);
+  textCol.classList.toggle('col-md-7', !wide);
+  textCol.classList.toggle('col-12', wide);
+
+  if (!wide) {
+    const img = topicModal.querySelector('.modal-img');
+    img.src = card.dataset.img;
+    img.alt = card.dataset.title;
+  }
 
   const source = document.querySelector(card.dataset.body);
-  topicModal.querySelector('.modal-text').innerHTML = source ? source.innerHTML : '';
+  textCol.innerHTML = source ? source.innerHTML : '';
 });
 
 document.querySelectorAll('.topic-card').forEach(card => {
@@ -633,10 +678,14 @@ function currentLink() {
   return (id && tocNav.querySelector('[href="#' + id + '"]')) || tocNav.querySelector('.nav-link');
 }
 
+const tocOffcanvas = document.getElementById('tocOffcanvas');
+const fabLabel = document.querySelector('.toc-fab-label');
+
 function syncPlane() {
   const link = currentLink();
   tocNav.querySelectorAll('.nav-link').forEach(a => a.classList.toggle('active', a === link));
   flyTo(link);
+  if (fabLabel && link) fabLabel.textContent = link.textContent.trim();
 }
 
 // 點導覽列 → 展開那一區並捲過去
@@ -646,10 +695,19 @@ tocNav.querySelectorAll('.nav-link').forEach(link => {
     const id = link.getAttribute('href').slice(1);
     const panel = document.getElementById('panel-' + id);
     bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false }).show();
-    document.getElementById(id).scrollIntoView({
+    // 手機版：選完就把面板收起來，收完再捲過去
+    const oc = bootstrap.Offcanvas.getInstance(tocOffcanvas);
+    const goThere = () => document.getElementById(id).scrollIntoView({
       behavior: softMotion ? 'smooth' : 'auto',
       block: 'start'
     });
+
+    if (oc && tocOffcanvas.classList.contains('show')) {
+      tocOffcanvas.addEventListener('hidden.bs.offcanvas', goThere, { once: true });
+      oc.hide();
+    } else {
+      goThere();
+    }
   });
 
   // 滑過去先預覽，移開再飛回目前展開的區塊
@@ -663,6 +721,16 @@ document.getElementById('mainAccordion')
   .addEventListener('shown.bs.collapse', syncPlane);
 document.getElementById('mainAccordion')
   .addEventListener('hidden.bs.collapse', syncPlane);
+
+// 面板藏起來時算不出位置，等它出現再定位飛機
+tocOffcanvas.addEventListener('shown.bs.offcanvas', () => {
+  planeY = null;          // 重新出現時不要播放飛行動畫
+  syncPlane();
+  document.body.classList.add('offcanvas-open');
+});
+tocOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
+  document.body.classList.remove('offcanvas-open');
+});
 
 window.addEventListener('resize', syncPlane);
 syncPlane();
