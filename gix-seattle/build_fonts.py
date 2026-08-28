@@ -50,21 +50,39 @@ class TextGrabber(HTMLParser):
         self.all_text = []
         self.quote_text = []
         self.depth_quote = 0
+        self.quote_tags = []
         self.skip = 0
+
+    # 這些 class 在 style.css 裡被指定成手寫體，
+    # 改 CSS 的字型歸屬時記得同步更新這份清單。
+    QUOTE_CLASSES = {
+        "quote-font", "pull-quote", "panel-quote",
+        "hero-quote", "card-text",
+    }
 
     def handle_starttag(self, tag, attrs):
         d = dict(attrs)
         if tag in ("script", "style"):
             self.skip += 1
-        classes = d.get("class", "").split()
-        if tag == "blockquote" or "quote-font" in classes:
+        classes = set(d.get("class", "").split())
+        if tag == "blockquote" or (classes & self.QUOTE_CLASSES):
             self.depth_quote += 1
+            self.quote_tags.append(tag)
+        else:
+            self.quote_tags.append(None)
 
     def handle_endtag(self, tag):
         if tag in ("script", "style") and self.skip:
             self.skip -= 1
-        if tag == "blockquote" and self.depth_quote:
-            self.depth_quote -= 1
+        # 依開啟順序回退，才不會被巢狀標籤弄亂
+        while self.quote_tags:
+            opened = self.quote_tags.pop()
+            if opened == tag:
+                if self.depth_quote:
+                    self.depth_quote -= 1
+                break
+            if opened is None:
+                break
 
     def handle_data(self, data):
         if self.skip:

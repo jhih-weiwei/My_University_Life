@@ -7,6 +7,10 @@
    1. 字型
    字型檔本身在 fonts/fonts.css（由 build_fonts.py 產生）
    這裡只決定「哪裡用哪一套」
+
+   ⚠ 改動下面這串手寫體的選擇器時，記得同步更新
+     build_fonts.py 裡的 QUOTE_CLASSES，
+     否則新加的字不會被放進優先載入的切片。
    ============================================================ */
 :root {
   --font-body:  "Iansui", "Noto Sans TC", system-ui, sans-serif;       /* 芫荽：內文 */
@@ -111,9 +115,11 @@ body {
   margin: 1.5rem 0;
 }
 
+/* 區塊開頭的定調句 */
 .panel-quote {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 4.5vw, 2rem);   /* 手機自動縮小，桌機維持 2rem */
   color: var(--sea);
+  margin-bottom: 1.75rem;
 }
 
 
@@ -218,7 +224,9 @@ body {
   line-height: 1;
   box-shadow: 0 .5rem 1.25rem rgba(31, 41, 51, .28);
 
-  /* 避開 iPhone 底部的home列 */
+  transition: opacity .2s ease, transform .12s ease;
+
+  /* 避開 iPhone 底部的 home 列 */
   margin-bottom: env(safe-area-inset-bottom, 0);
 }
 
@@ -244,11 +252,6 @@ body.offcanvas-open .toc-fab {
   opacity: 0;
   pointer-events: none;
 }
-
-.toc-fab {
-  transition: opacity .2s ease, transform .12s ease;
-}
-
 
 /* 手機版底部留白，免得頁尾被按鈕壓住 */
 @media (max-width: 991.98px) {
@@ -319,10 +322,11 @@ body.offcanvas-open .toc-fab {
   margin-bottom: .35rem;
 }
 
+/* 手寫體筆畫細，字級放大、顏色比一般說明文字深一點才讀得清楚 */
 .topic-card .card-text {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: #6b7680;
+  color: #5a6570;
   margin-bottom: 0;
 }
 
@@ -361,10 +365,6 @@ body.offcanvas-open .toc-fab {
 img {
   max-width: 100%;
   height: auto;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, .toc-plane { transition: none !important; }
 }
 
 
@@ -455,11 +455,9 @@ img {
 
 /* ============================================================
    10. 內文插圖
-   三種寫法：.inline-figure 單張、.figure-pair 兩張並排、
+   .inline-figure 單張、.figure-pair 兩張並排、
    .figure-grid 三張以上自動排列
    ============================================================ */
-
-/* 共用：圖片本體與說明文字 */
 .inline-figure img,
 .figure-pair img,
 .figure-grid img {
@@ -516,5 +514,147 @@ img {
 @media (max-width: 575.98px) {
   .figure-pair {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================================
+   11. 暴雷遮蔽
+   .spoiler        句中幾個字，黑條遮住
+   .spoiler-blur   句中幾個字，改用模糊
+   .spoiler-img    整張圖模糊
+   .spoiler-block  整段收合（配合 <details>）
+
+   前三者的點擊由 script.js 處理，.spoiler-block 用 HTML 原生
+   的 <details>，不需要 JS。
+   ============================================================ */
+
+/* ---------- 行內：黑條 ---------- */
+.spoiler {
+  /* 把按鈕的預設外觀清乾淨，讓它像一段文字 */
+  font: inherit;
+  line-height: inherit;
+  padding: 0 .15em;
+  border: none;
+  border-radius: .2em;
+
+  background-color: var(--ink);
+  color: transparent;
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+.spoiler:hover {
+  background-color: #3d4a54;
+}
+
+.spoiler.revealed {
+  background-color: rgba(192, 57, 43, .12);
+  color: var(--highlight);
+  cursor: default;
+}
+
+/* ---------- 行內：模糊 ---------- */
+.spoiler-blur {
+  font: inherit;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+
+  filter: blur(.28em);
+  transition: filter .3s ease;
+}
+
+.spoiler-blur.revealed {
+  filter: none;
+  cursor: default;
+}
+
+/* ---------- 圖片 ---------- */
+.spoiler-img {
+  position: relative;
+  cursor: pointer;
+}
+
+.spoiler-img img {
+  filter: blur(1.2rem);
+  transition: filter .4s ease;
+}
+
+.spoiler-img::after {
+  content: "點擊顯示";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: .45rem 1rem;
+  border-radius: 999px;
+  background: rgba(31, 41, 51, .75);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+.spoiler-img.revealed img     { filter: none; }
+.spoiler-img.revealed::after  { opacity: 0; }
+.spoiler-img.revealed         { cursor: default; }
+
+/* ---------- 整段收合 ---------- */
+.spoiler-block {
+  margin: 1.5rem 0;
+  border: 1px dashed var(--line);
+  border-radius: .75rem;
+  background: rgba(44, 95, 111, .04);
+}
+
+.spoiler-block > summary {
+  padding: .75rem 1rem;
+  color: var(--sea);
+  cursor: pointer;
+  list-style: none;          /* 藏掉預設的小三角 */
+  user-select: none;
+}
+
+.spoiler-block > summary::-webkit-details-marker {
+  display: none;
+}
+
+.spoiler-block > summary::before {
+  content: "\F4FA";          /* Bootstrap Icons 的眼睛（斜線） */
+  font-family: "bootstrap-icons";
+  margin-right: .5rem;
+}
+
+.spoiler-block[open] > summary::before {
+  content: "\F341";          /* 打開後換成一般的眼睛 */
+}
+
+.spoiler-block[open] > summary {
+  border-bottom: 1px dashed var(--line);
+  margin-bottom: .25rem;
+}
+
+.spoiler-block .spoiler-body {
+  padding: .5rem 1rem 1rem;
+}
+
+
+/* ============================================================
+   12. 尊重「減少動態效果」的系統設定
+   放在最後，確保蓋得過前面所有 transition
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  .toc-plane,
+  .spoiler,
+  .spoiler-blur,
+  .spoiler-img img,
+  .spoiler-img::after {
+    transition: none !important;
   }
 }
